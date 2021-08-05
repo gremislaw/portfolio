@@ -6,7 +6,7 @@ body {
   line-height: 32px;
   color: #222222;
   background-color: #f2f4f6;
-  background-image: url("img/hero-bg.jpg");
+  background-image: url("img/bground.jpg");
   background-repeat: no-repeat;
   background-position: top center;
 }
@@ -116,6 +116,18 @@ body {
 
 .skill-css {
   background-image: url("img/icon-css.svg");
+}
+
+.skill-python {
+  background-image: url("img/icon-python.svg");
+}
+
+.skill-pascal {
+  background-image: url("img/icon-pascal.svg");
+}
+
+.skill-java {
+  background-image: url("img/icon-java.svg");
 }
 
 .level {
