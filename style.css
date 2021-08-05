@@ -112,12 +112,12 @@ body {
 
 .skill-python {
   background-image: url("img/icon-python.svg");
-  background-size: 6.25%;
+  background-size: 6.25;
 }
 
 .skill-pascal {
   background-image: url("img/icon-pascal.svg");
-  background-size: 50%;
+  background-size: 50;
 
 }
 
