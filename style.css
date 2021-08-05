@@ -109,6 +109,9 @@ body {
   background-image: url("img/abilities.jpg");
 }
 
+.hero-picture {
+  margin: 32px 0;
+}
 
 .skills-list dt {
   padding-left: 64px;
