@@ -14,7 +14,7 @@
 }
 
 #slides .image {
-  width: 500%;
+  width: 1500%;
   line-height: 0;
 }
 
@@ -46,7 +46,7 @@ article img{ /*размер изображений слайдера*/
 #switch13: checked ~ #controls label:nth-child(12),
 #switch14: checked ~ #controls label:nth-child(13),
 #switch15: checked ~ #controls label:nth-child(14) {
-  background: url('img/prev.jpeg') no-repeat;
+  background: url("img/prev.jpeg") no-repeat;
   float: left;
   margin: 0 0 0 -84px;
   display: block;
@@ -69,7 +69,7 @@ article img{ /*размер изображений слайдера*/
 #switch13: checked ~ #controls label:nth-child(14),
 #switch14: checked ~ #controls label:nth-child(15),
 #switch15: checked ~ #controls label:nth-child(1) {
-  background: url('img/next.jpeg') no-repeat;
+  background: url("img/next.jpeg") no-repeat;
   float: right;
   margin: 0 -84px 0 0;
   display: block;
@@ -366,9 +366,6 @@ body {
   margin: 0 0 24px;
 }
 
-.gramoty {
-  text-align: center;
-}
 
 .button {
   padding: 6px 20px;
