@@ -112,6 +112,7 @@ body {
 
 .skill-python {
   background-image: url("img/icon-python.png");
+  background-size: 32px;
 }
 
 .skill-pascal {
