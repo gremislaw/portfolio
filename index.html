@@ -24,7 +24,7 @@
 
     <section class="intro">
       <h2 class="subheading">Давайте познакомимся</h2>
-      <h3 id="semen">Пара слов о себе </h3>
+      <h3 id="semen">Пару слов о себе </h3>
       <p>Я не вписываюсь в рамки, не укладываюсь в гроб. <br>
         Я летаю выше планки - ниже планки падать чтоб. <br>
         То легко иду по нитке, то вишу на волоске. <br>
@@ -54,6 +54,18 @@
 
     <section class="portfolio">
       <h2 class="subheading" id="achievement">Мои достижения</h2>
+      <p>
+        <img id="image" src="img/1.jpeg" onClick="imgsrc();">
+        <script language="javascript">
+          var i=0;
+          var image=document.getElementById("image");
+          var imgs=new Array('img/1.jpeg','img/2.jpeg', 'img/3.jpeg', 'img/4.jpeg', 'img/5.jpeg', 'img/6.jpeg', 'img/7.jpeg', 'img/8.jpeg', 'img/9.jpeg', 'img/10.jpeg', 'img/11.jpeg', 'img/12.jpeg', 'img/13.jpeg', 'img/14.jpeg', 'img/15.jpeg');
+          function imgsrc() {
+            i++;
+            image.src=imgs[i];
+          }
+        </script>
+      </p>
 
 
 
