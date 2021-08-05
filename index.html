@@ -55,11 +55,13 @@
     <section class="portfolio">
       <h2 class="subheading" id="achievement">Мои достижения</h2>
       <p>
-        <img id="image" src="img/1.jpeg" onClick="imgsrc();">
+        <img class="gramoty" id="image" src="img/1.jpeg" onClick="imgsrc();" width="512" height="683" alt="Грамоты">
         <script language="javascript">
           var i=0;
           var image=document.getElementById("image");
-          var imgs=new Array('img/1.jpeg','img/2.jpeg', 'img/3.jpeg', 'img/4.jpeg', 'img/5.jpeg', 'img/6.jpeg', 'img/7.jpeg', 'img/8.jpeg', 'img/9.jpeg', 'img/10.jpeg', 'img/11.jpeg', 'img/12.jpeg', 'img/13.jpeg', 'img/14.jpeg', 'img/15.jpeg');
+          var imgs=new Array('img/1.jpeg','img/2.jpeg', 'img/3.jpeg', 'img/4.jpeg', 'img/5.jpeg', 'img/6.jpeg',
+          'img/7.jpeg', 'img/8.jpeg', 'img/9.jpeg', 'img/10.jpeg', 'img/11.jpeg', 'img/12.jpeg', 'img/13.jpeg',
+          'img/14.jpeg', 'img/15.jpeg');
           function imgsrc() {
             i++;
             image.src=imgs[i];

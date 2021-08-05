@@ -178,6 +178,10 @@ body {
   margin: 0 0 24px;
 }
 
+.gramoty {
+  text-align: center;
+}
+
 .button {
   padding: 6px 20px;
   display: inline-block;
