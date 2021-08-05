@@ -97,7 +97,7 @@ body {
 .skills-list dt {
   padding-left: 32px;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: center;
 }
 
 .skill-html {
