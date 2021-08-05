@@ -4,10 +4,10 @@ body {
   font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
   font-size: 16px;
   line-height: 32px;
-  color: #222222;
-  background-color: #f2f4f6;
-  background-image: url("img/bground.jpg");
-  background-repeat: repeat;
+  color: #f2f2f2;
+  background-color: #080208;
+  background-image: url("img/hero-bg.jpg");
+  background-repeat: no-repeat;
   background-position: top center;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 .page-header {
-  margin: 0 0 160px;
+  margin: 0 0 180px;
   padding: 32px 0 32px;
 }
 
@@ -30,22 +30,14 @@ body {
 
 .page-header a {
   margin-left: 56px;
-  color: #288be6;
+  color: #fea18d;
   text-decoration: none;
   background-repeat: no-repeat;
   background-position: left;
 }
 
-.header-email {
-  padding-left: 30px;
-}
-
-.header-phone {
-  padding-left: 25px;
-}
-
 .hero-image {
-  margin-bottom: 620px;
+  margin-bottom: 480px;
 }
 
 .hero-image .container {
@@ -117,7 +109,7 @@ body {
 }
 
 .skill-python {
-  background-image: url("img/icon-python.svg") width="";
+  background-image: url("img/icon-python.svg");
 }
 
 .skill-pascal {
