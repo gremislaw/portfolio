@@ -96,7 +96,7 @@ body {
 
 
 .skills-list dt {
-  padding-left: 32px;
+  padding-left: 64px;
   background-repeat: no-repeat;
   background-position: left;
   text-align: left;
@@ -112,13 +112,10 @@ body {
 
 .skill-python {
   background-image: url("img/icon-python.svg");
-  background-size: 6.25;
 }
 
 .skill-pascal {
   background-image: url("img/icon-pascal.svg");
-  background-size: 50;
-
 }
 
 .skill-java {
