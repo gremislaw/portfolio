@@ -10,6 +10,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: top center;
+  margin-top: 64px
 }
 
 .container {
@@ -21,9 +22,14 @@ body {
 .page-header {
   margin: 0 0 180px;
   padding: 32px 0 32px;
+  background-color: #fea18d
 }
 
-.page-header .container,
+.page-header .container {
+  max-width: 1408px;
+  text-align: center;
+}
+
 .page-footer .container {
   max-width: 1408px;
   text-align: right;
@@ -31,10 +37,11 @@ body {
 
 .page-header a {
   margin-left: 56px;
-  color: #fea18d;
+  color: #ffffff;
   text-decoration: none;
   background-repeat: no-repeat;
   background-position: left;
+  font-weight: 550;
 }
 
 .hero-image {
