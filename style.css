@@ -77,7 +77,9 @@ body {
   margin: 0 0 120px;
 }
 
-.subheading {
+.subheading h2,
+.subheading h3,
+.subheading p {
   margin: 0 0 56px;
   font-family: "Old Standard TT", "Times", "Times New Roman", serif;
   font-size: 64px;
