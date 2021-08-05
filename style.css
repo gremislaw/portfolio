@@ -13,6 +13,10 @@
   float: left;
 }
 
+#slides .image {
+  width: 100%;
+  line-height: 0;
+}
 
 #overflow {
   width: 100%;
