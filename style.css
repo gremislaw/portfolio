@@ -94,10 +94,14 @@ body {
   padding: 0;
 }
 
+.skills {
+  text-align: left;
+}
+
 .skills-list dt {
   padding-left: 32px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left;
 }
 
 .skill-html {
