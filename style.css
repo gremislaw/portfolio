@@ -46,6 +46,13 @@ body {
   text-align: center;
 }
 
+.hero-image h1,
+.hero-image p {
+  color: #000000;
+  webkit-text-stroke-width: 2px;
+  webkit-text-stroke-color: white;
+}
+
 .heading {
   margin: 0 0 16px;
   font-family: "Old Standard TT", "Times", "Times New Roman", serif;
