@@ -14,7 +14,7 @@
 }
 
 #slides .image {
-  width: 100%;
+  width: 500%;
   line-height: 0;
 }
 
@@ -23,9 +23,12 @@
   overflow: hidden;
 }
 
+article img{ /*размер изображений слайдера*/
+	width: 100%;
+}
 
 #desktop:checked ~ #slider{ /*размер всего слайдера*/
-	max-width: 310px; /*максимальнная длинна*/
+	max-width: 960px; /*максимальнная длинна*/
 }
 
 #switch1: checked ~ #controls label:nth-child(15),
