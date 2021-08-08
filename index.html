@@ -2,6 +2,43 @@
 <html lang="ru">
   <head>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Old+Standard+TT&display=swap&subset=cyrillic" rel="stylesheet">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function()
+		{
+			$(".slider").each(function ()
+			{
+				var obj = $(this);
+				$(obj).append("<div class='nav'></div>");
+
+				$(obj).find("li").each(function ()
+				{
+					$(obj).find(".nav").append("<span rel='"+$(this).index()+"'></span>");
+					$(this).addClass("slider"+$(this).index());
+				});
+
+				$(obj).find("span").first().addClass("on");
+			});
+		});
+
+	function sliderJS (obj, sl) // slider function
+	{
+		var ul = $(sl).find("ul");
+		var bl = $(sl).find("li.slider"+obj);
+		var step = $(bl).width();
+		$(ul).animate({marginLeft: "-"+step*obj}, 500);
+	}
+
+	$(document).on("click", ".slider .nav span", function() // slider click navigate
+	{
+		var sl = $(this).closest(".slider");
+		$(sl).find("span").removeClass("on");
+		$(this).addClass("on");
+		var obj = $(this).attr("rel");
+		sliderJS(obj, sl);
+		return false;
+	});
+</script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Портфолио D. Master'а Дажы</title>
@@ -13,6 +50,7 @@
       <a href="#semen">Обо мне</a>
       <a href="#skill">Мои навыки</a>
       <a href="#achievement">Мои достижения</a>
+      <button class="theme-button" type="button">Изменить тему</button>
     </div>
   </header>
     <section class="hero-image">
@@ -23,8 +61,8 @@
     </section>
 
     <section class="intro">
-      <h2 class="subheading">Давайте познакомимся</h2>
-      <h3 id="semen">Пару слов о себе </h3>
+      <h2 id="semen" class="subheading">Давайте познакомимся</h2>
+      <h3 >Пару слов о себе </h3>
       <p>Я не вписываюсь в рамки, не укладываюсь в гроб. <br>
         Я летаю выше планки - ниже планки падать чтоб. <br>
         То легко иду по нитке, то вишу на волоске. <br>
@@ -35,7 +73,7 @@
         <img src="img/dazhy.png" width="512" height="683" alt="Фото меня"> <br>
       </figure>
       <div class="skills">
-        <h3 id="skill">Мои навыки</h3>
+        <h3 id="skill" class="semen">Мои навыки</h3>
         <dl class="skills-list">
           <dt class="skill-html">HTML</dt>
           <dd class="level"><div style="width: 60%;">60%</div></dd>
@@ -54,62 +92,40 @@
   <section>
     <p>
       <h2 class="subheading" id="achievement">Мои достижения</h2>
-        <div class="all">
-          <input checked type="radio" name="respond" id="dekstop">
-            <article id="slider">
-              <input checked type="radio" name="slider" id="switch1">
-              <input type="radio" name="slider" id="switch2">
-              <input type="radio" name="slider" id="switch3">
-              <input type="radio" name="slider" id="switch4">
-              <input type="radio" name="slider" id="switch5">
-              <input type="radio" name="slider" id="switch6">
-              <input type="radio" name="slider" id="switch7">
-              <input type="radio" name="slider" id="switch8">
-              <input type="radio" name="slider" id="switch9">
-              <input type="radio" name="slider" id="switch10">
-              <input type="radio" name="slider" id="switch11">
-              <input type="radio" name="slider" id="switch12">
-              <input type="radio" name="slider" id="switch13">
-              <input type="radio" name="slider" id="switch14">
-              <input type="radio" name="slider" id="switch15">
-                <div id="slides">
-                  <div id="overflow">
-                    <div class="image">
-                      <article><img src="img/1.jpeg" width="512" height="683"></article>
-                      <article><img src="img/2.jpeg" width="512" height="683"></article>
-                      <article><img src="img/3.jpeg" width="512" height="683"></article>
-                      <article><img src="img/4.jpeg" width="512" height="683"></article>
-                      <article><img src="img/5.jpeg" width="512" height="683"></article>
-                      <article><img src="img/6.jpeg" width="512" height="683"></article>
-                      <article><img src="img/7.jpeg" width="512" height="683"></article>
-                      <article><img src="img/8.jpeg" width="512" height="683"></article>
-                      <article><img src="img/9.jpeg" width="512" height="683"></article>
-                      <article><img src="img/10.jpeg" width="512" height="683"></article>
-                      <article><img src="img/11.jpeg" width="512" height="683"></article>
-                      <article><img src="img/12.jpeg" width="512" height="683"></article>
-                      <article><img src="img/13.jpeg" width="512" height="683"></article>
-                      <article><img src="img/14.jpeg" width="512" height="683"></article>
-                      <article><img src="img/15.jpeg" width="512" height="683"></article>
-                    </div>
-                  </div>
-                </div>
-                <div id="controls">
-                  <label for="switch1"></label>
-                  <label for="switch2"></label>
-                  <label for="switch3"></label>
-                  <label for="switch4"></label>
-                  <label for="switch5"></label>
-                </div>
+    <p class>
+    <div class="slider">
+      <ul>
+        <li><img src="img/1.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/2.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/3.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/4.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/5.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/6.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/7.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/8.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/9.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/10.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/11.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/12.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/13.jpeg" width="510" height="800"  alt=""></li>
+        <li><img src="img/14.jpeg" width="510" height="800" alt=""></li>
+        <li><img src="img/15.jpeg" width="510" height="800" alt=""></li>
+      </ul>
+    </div>
+  </p>
+    <script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-23131825-1']);
+		_gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})(); </script>
 
-              <div id="active">
-                <label for="switch1"></label>
-                <label for="switch2"></label>
-                <label for="switch3"></label>
-                <label for="switch4"></label>
-                <label for="switch5"></label>
-              </div>
-            </article>
-        </div>
+    <script type="text/javascript">new Image().src = "http://counter.yadro.ru/hit?r"+
+			escape(document.referrer)+((typeof(screen)=="undefined")?"":
+				";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+				screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+";"+Math.random();</script>
+
+    <script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter20963398 = new Ya.Metrika({id:20963398, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true, trackHash:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/20963398" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
 
 
     <footer class="page-footer">
