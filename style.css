@@ -27,6 +27,8 @@
   background-image: url("img/hero-image.svg");
   background-size: 85%;
   background-position: top right;
+  background-position-y: 90px;
+  background-position-x: 220px;
 }
 .dark-theme .hero-image {
   position: relative;
