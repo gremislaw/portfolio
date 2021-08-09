@@ -24,8 +24,9 @@
   color: #ffffff;
   background-color: #1f1e1e;
   background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: top center;
+  background-image: url("img/hero-image.svg");
+  background-size: 85%;
+  background-position: top right;
 }
 .dark-theme .hero-image {
   position: relative;
@@ -42,16 +43,6 @@
   text-align: left;
 }
 
-.dark-theme .hero-image::before {
-  position: absolute;
-  content: "";
-  top: -90px;
-  left: 500px;
-  width: 800px;
-  height: 800px;
-  background-image: url("img/hero-image.svg");
-  background-repeat: no-repeat;
-}
 
 .container {
   max-width: 928px;
