@@ -75,7 +75,6 @@
   position: left;
   max-width: 1408px;
   text-align: center;
-  margin-left: 150px;
 }
 
 .page-footer .container {
@@ -129,7 +128,7 @@
   border-radius: 20%;
   background-color: transparent;
   cursor: pointer;
-  color: #1f1e1e;
+  color: #ffffff;
   border: 1px solid #1f1e1e;
 }
 
