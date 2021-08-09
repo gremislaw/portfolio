@@ -39,19 +39,25 @@
 		return false;
 	});
 </script>
+    <style>
+html {
+  scroll-behavior: smooth;
+}
+</style>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Портфолио D. Master'а Дажы</title>
   </head>
 
-  <body>
+  <body class="page light-theme">
   <header class="page-header">
     <div class="container">
-      <a href="#semen">Обо мне</a>
+      <a id="menu" href="#semen">Обо мне</a>
       <a href="#skill">Мои навыки</a>
       <a href="#achievement">Мои достижения</a>
       <button class="theme-button" type="button">Изменить тему</button>
     </div>
+
   </header>
     <section class="hero-image">
       <div class="container">
@@ -70,7 +76,7 @@
         Я воспитанно - порочен.. . я до глупости умен... <br>
         Я рассветен, я полночен и, конечно же, прекрасен!</p>
       <figure class="user-image">
-        <img src="img/dazhy.png" width="512" height="683" alt="Фото меня"> <br>
+        <img src="img/dazhy.jpg" width="512" height="683" alt="Фото меня"> <br>
       </figure>
       <div class="skills">
         <h3 id="skill" class="semen">Мои навыки</h3>
@@ -92,7 +98,7 @@
   <section>
     <p>
       <h2 class="subheading" id="achievement">Мои достижения</h2>
-    <p class>
+    <p>
     <div class="slider">
       <ul>
         <li><img src="img/1.jpeg" width="510" height="800" alt=""></li>
@@ -137,5 +143,6 @@
     </p>
       </section>
     </footer>
+  <script src="script.js"></script>
   </body>
 </html>
