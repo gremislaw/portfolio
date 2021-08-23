@@ -100,7 +100,7 @@
   padding-bottom: 7px;
   padding-left: 16px;
   font-size: 12px;
-  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", serif;
   border-radius: 20%;
   background-color: transparent;
   cursor: pointer;
@@ -116,7 +116,7 @@
   padding-bottom: 7px;
   padding-left: 16px;
   font-size: 12px;
-  font-family: "Montserrat", "Helvetica", "Arial", sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", serif;
   border-radius: 20%;
   background-color: transparent;
   cursor: pointer;
@@ -283,7 +283,7 @@ time {
 }
 
 .comment-field {
-  width: 100%;
+  width: 95%;
   height: 30px;
   padding: 0 10px;
   border: none;
@@ -401,7 +401,13 @@ time {
 
 .light-theme .subscription,
 .light-theme .comment-form {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-theme .subscription,
+.dark-theme .comment-form {
+  background-color: #303030;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -410,19 +416,32 @@ time {
   color: #eae9f2;
 }
 
-.light-theme .subscription-message::before {
-  background-image: url("img/icon-ok-light.svg");
+.dark-theme .subscription-message {
+  background-color: #6653d9;
+  color: #eae9f2;
 }
+
 
 .light-theme .subscription-label,
 .light-theme .comment-label {
   color: #6653d9;
 }
 
+.dark-theme .subscription-label,
+.dark-theme .comment-label {
+  color: #bfff00;
+}
+
 .light-theme .subscription-email,
 .light-theme .comment-field {
   border: 1px solid #eae9f2;
   color: #333333;
+}
+
+.dark-theme .subscription-email,
+.dark-theme .comment-field {
+  border: 1px solid #3a3a3a;
+  color: #ffffff;
 }
 
 .heart:focus,
