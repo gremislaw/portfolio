@@ -123,6 +123,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
       gap: 16px;
+      margin-bottom: 60px;
     }
     .skill-item {
       background: rgba(255,255,255,0.04);
@@ -278,14 +279,14 @@
   <section class="hero container">
     <h1>Дажы Ховалыг</h1>
     <div class="subhead">Golang · Backend · Инфраструктура</div>
-    <div class="tagline">Студент МИСИС • Школа 21 • Авито (стажировка) • ищу вызовы</div>
+    <div class="tagline">Студент МИСИС • Школа 21 • Авито • ищу вызовы</div>
   </section>
 
   <section id="about" class="container">
     <h2 class="subheading">Обо мне</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>Начинающий Go-разработчик с коммерческим опытом в Авито (работа с нагрузкой 1500 RPS, стабилизация тестовых окружений, CI/CD). Проектировал микросервисы, работал с PostgreSQL, Kafka, Docker, Kubernetes.</p>
+        <p>Go-разработчик с коммерческим опытом в Авито. Люблю интересные задачи, ценю порядок в коде и предсказуемость в работе. Проактивный, быстро адаптируюсь и обучаюсь</p>
         <p>Постоянно прокачиваюсь в области highload, распределённых систем и инфраструктурных решений. Умею доводить задачи до продакшена и не боюсь сложных архитектурных вызовов.</p>
         <div class="hobby">В свободное время играю в КС, осваиваю гитару и плаваю.</div>
         <div style="margin-top: 24px;">
@@ -323,13 +324,14 @@
     <h2 class="subheading">Проекты</h2>
     <div class="projects-grid">
       <div class="project-card">
-        <h3>Авито (стажировка)</h3>
-        <p>Стабилизация тестовых окружений, снижение падений CI/CD на 73%, оптимизация пользовательского флоу.</p>
+        <h3>Авито</h3>
+        <p>Разработал консьюмеры и продьюсеры Kafka, при выкатке в прод следил за дашбордами, реализовал модуль Clickhouse, Выполнил годовой приоритет СТО: стабилизировал тестовое окружение в 3 сервисах через
+анализ ELK и декомпозицию.</p>
         <span class="stack">Go · CI/CD · PostgreSQL</span>
       </div>
       <div class="project-card">
         <h3>Core-сервис (Clyro)</h3>
-        <p>Архитектура с нуля, Clean Architecture, PostgreSQL, Redis, CI/CD, нагрузка 50k RPS, zero‑downtime деплой.</p>
+        <p>Архитектура с нуля, Clean Architecture, PostgreSQL, Redis, CI/CD, прикрутил rate-limiting.</p>
         <span class="stack">Go · PostgreSQL · Docker</span>
       </div>
       <div class="project-card">
