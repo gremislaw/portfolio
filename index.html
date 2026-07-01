@@ -1,170 +1,418 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Old+Standard+TT&display=swap&subset=cyrillic" rel="stylesheet">
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript">
-		$(document).ready(function()
-		{
-			$(".slider").each(function ()
-			{
-				var obj = $(this);
-				$(obj).append("<div class='nav'></div>");
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дажы Ховалыг · Go‑разработчик</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0d10;
+      color: #e8edf2;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.light {
+      background: #f4f6f9;
+      color: #1a1e24;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    a { color: #64b5f6; text-decoration: none; transition: 0.2s; }
+    a:hover { color: #90caf9; }
 
-				$(obj).find("li").each(function ()
-				{
-					$(obj).find(".nav").append("<span rel='"+$(this).index()+"'></span>");
-					$(this).addClass("slider"+$(this).index());
-				});
+    /* header */
+    .page-header {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .page-header .nav-links a {
+      margin-left: 24px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      color: #aaa;
+    }
+    .page-header .nav-links a:hover { color: #fff; }
+    .theme-toggle {
+      background: none;
+      border: 1px solid #555;
+      border-radius: 30px;
+      padding: 6px 16px;
+      color: #ddd;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+    .theme-toggle:hover { background: #2a2f35; }
 
-				$(obj).find("span").first().addClass("on");
-			});
-		});
+    /* hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #64b5f6, #42a5f5, #1e88e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .subhead {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-top: 12px;
+      font-weight: 400;
+    }
+    .hero .tagline {
+      margin-top: 24px;
+      font-size: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: rgba(255,255,255,0.03);
+      padding: 16px 24px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #b0b8c0;
+    }
 
-	function sliderJS (obj, sl) // slider function
-	{
-		var ul = $(sl).find("ul");
-		var bl = $(sl).find("li.slider"+obj);
-		var step = $(bl).width();
-		$(ul).animate({marginLeft: "-"+step*obj}, 500);
-	}
+    /* sections */
+    section { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    .subheading {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 32px;
+      letter-spacing: -0.5px;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 1.05rem;
+      color: #c5cdd6;
+      margin-bottom: 16px;
+    }
+    .about-text .quote {
+      font-style: italic;
+      border-left: 3px solid #64b5f6;
+      padding-left: 20px;
+      color: #8a9aa8;
+    }
+    .user-image img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.7);
+      display: block;
+      margin: 0 auto;
+    }
 
-	$(document).on("click", ".slider .nav span", function() // slider click navigate
-	{
-		var sl = $(this).closest(".slider");
-		$(sl).find("span").removeClass("on");
-		$(this).addClass("on");
-		var obj = $(this).attr("rel");
-		sliderJS(obj, sl);
-		return false;
-	});
-</script>
-    <style>
-html {
-  scroll-behavior: smooth;
-}
-</style>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Портфолио D. Master'а Дажы</title>
-  </head>
+    /* skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+      gap: 16px;
+    }
+    .skill-item {
+      background: rgba(255,255,255,0.04);
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.2s;
+    }
+    .skill-item:hover { background: rgba(100,181,246,0.08); transform: translateY(-3px); }
+    .skill-item .level {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #8a9aa8;
+      margin-top: 4px;
+    }
 
-  <body class="page light-theme">
-  <header class="page-header">
-    <div class="container">
-      <a id="menu" href="#semen">Обо мне</a>
-      <a href="#skill">Мои навыки</a>
-      <a href="#achievement">Мои достижения</a>
-      <button class="theme-button" type="button">Изменить тему</button>
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.25s;
+    }
+    .project-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-5px); }
+    .project-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .project-card p { font-size: 0.9rem; color: #9aa9b8; }
+    .project-card .stack {
+      display: inline-block;
+      background: rgba(100,181,246,0.15);
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #64b5f6;
+      margin-top: 10px;
+    }
+
+    /* comments */
+    .comment-feed { background: rgba(255,255,255,0.02); border-radius: 20px; padding: 30px; }
+    .comment-list { list-style: none; margin: 20px 0; }
+    .user-comment {
+      background: rgba(255,255,255,0.04);
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      border-left: 3px solid #64b5f6;
+    }
+    .comment-form { display: flex; gap: 12px; flex-wrap: wrap; }
+    .comment-form input {
+      flex: 1;
+      padding: 12px 18px;
+      border-radius: 40px;
+      border: 1px solid #2a2f35;
+      background: #161a1f;
+      color: #e8edf2;
+      font-size: 1rem;
+    }
+    .comment-form button {
+      background: #64b5f6;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #0b0d10;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .comment-form button:hover { background: #42a5f5; }
+
+    /* footer */
+    .page-footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .page-footer a { color: #8a9aa8; }
+    .page-footer a:hover { color: #fff; }
+
+    /* likes */
+    .heart {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      color: #e8edf2;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .heart.liked { color: #ef5350; }
+    .heart .likes-number { font-weight: 600; }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .page-header { flex-direction: column; gap: 12px; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+    /* light theme overrides */
+    body.light .page-header { border-bottom-color: #ddd; }
+    body.light .hero .tagline { background: #fff; border-color: #ddd; color: #333; }
+    body.light .skill-item { background: #fff; border-color: #ddd; }
+    body.light .project-card { background: #fff; border-color: #ddd; }
+    body.light .comment-feed { background: #fff; }
+    body.light .user-comment { background: #f0f2f5; border-left-color: #1e88e5; }
+    body.light .comment-form input { background: #f0f2f5; border-color: #ccc; color: #111; }
+    body.light .heart { color: #111; }
+    body.light .subheading { color: #111; }
+    body.light .about-text p { color: #333; }
+    body.light .about-text .quote { color: #555; }
+    body.light .page-footer { border-top-color: #ddd; }
+    body.light .page-footer a { color: #555; }
+    body.light .page-footer a:hover { color: #000; }
+  </style>
+</head>
+<body>
+  <header class="page-header container">
+    <div class="nav-links">
+      <a href="#about">Обо мне</a>
+      <a href="#skills">Навыки</a>
+      <a href="#projects">Проекты</a>
+      <a href="#comments">Отзывы</a>
     </div>
-
+    <button class="theme-toggle" id="themeToggle">🌙 Тёмная</button>
   </header>
-    <section class="hero-image">
-      <div class="container">
-        <h1 class="heading">Ховалыг Дажы</h1>
-        <p>учащийся ГЛРТ</p>
-      </div>
-    </section>
-    <section class="intro">
-      <h2 id="semen" class="subheading">Давайте познакомимся</h2>
-      <h3 >Пару слов о себе </h3>
-      <p>Я не вписываюсь в рамки, не укладываюсь в гроб. <br>
-        Я летаю выше планки - ниже планки падать чтоб. <br>
-        То легко иду по нитке, то вишу на волоске. <br>
-        То коплю свои обиды, то безумствую в тоске. <br>
-        Я воспитанно - порочен.. . я до глупости умен... <br>
-        Я рассветен, я полночен и, конечно же, прекрасен!</p>
-      <figure class="user-image">
-        <img src="img/dazhy.jpg" width="512" height="683" alt="Фото меня"> <br>
-        <div class="news-stats">
-          <button class="heart" type="button"><span class="likes-number">498</span></button>
-          <time datetime="2021-04-05">5 апреля 2021</time>
+
+  <section class="hero container">
+    <h1>Дажы Ховалыг</h1>
+    <div class="subhead">Golang · Backend · Инфраструктура</div>
+    <div class="tagline">Студент МИСИС • Школа 21 • Авито (стажировка) • ищу вызовы</div>
+  </section>
+
+  <section id="about" class="container">
+    <h2 class="subheading">👋 Обо мне</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Я — начинающий Go-разработчик с опытом коммерческой разработки в Авито и собственными pet-проектами. Умею проектировать микросервисы, работать с PostgreSQL, Kafka, Docker, Kubernetes.</p>
+        <p class="quote">«Люблю, когда система не падает, а код решает бизнес-задачи. Ищу место, где мои решения будут влиять на продукт.»</p>
+        <p>Сейчас активно развиваюсь в SRE и AI-агентах. Готов к стажировке или junior-позиции.</p>
+        <div style="margin-top: 20px;">
+          <span class="heart" id="likeButton">❤️ <span class="likes-number" id="likesCount">128</span></span>
         </div>
-      </figure>
-      <div class="skills">
-        <h3 id="skill" class="semen">Мои навыки</h3>
-        <dl class="skills-list">
-          <dt class="skill-html">HTML</dt>
-          <dd class="level"><div style="width: 60%;">60%</div></dd>
-          <dt class="skill-css">CSS</dt>
-          <dd class="level"><div style="width: 50%;">50%</div></dd>
-          <dt class="skill-python">PYTHON</dt>
-          <dd class="level"><div style="width: 90%;">90%</div></dd>
-          <dt class="skill-pascal">PASCAL</dt>
-          <dd class="level"><div style="width: 60%;">60%</div></dd>
-          <dt class="skill-java">JAVA</dt>
-          <dd class="level"><div style="width: 20%;">20%</div></dd>
-          <dt class="skill-javascript">JAVASCRIPT</dt>
-          <dd class="level"><div style="width: 50%;">50%</div></dd>
-          <dt class="skill-php">PHP</dt>
-          <dd class="level"><div style="width: 30%;">30%</div></dd>
-
-        </dl>
       </div>
-
-    </section>
-  <section>
-    <p>
-      <h2 class="subheading" id="achievement">Мои достижения</h2>
-    <p>
-    <div class="slider">
-      <ul>
-        <li><img src="img/1.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/2.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/3.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/4.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/5.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/6.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/7.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/8.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/9.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/10.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/11.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/12.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/13.jpeg" width="510" height="800"  alt=""></li>
-        <li><img src="img/14.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/15.jpeg" width="510" height="800" alt=""></li>
-        <li><img src="img/16.jpg" width="510" height="800" alt=""></li>
-      </ul>
+      <div class="user-image">
+        <img src="img/dazhy.jpg" alt="Дажы Ховалыг" loading="lazy">
+      </div>
     </div>
-  </p>
-    <section class="comment-feed container">
-      <h2>Комментарии</h2>
-      <ol class="comment-list">
-        <li class="user-comment">Добрый и красивый паренёк</li>
-        <li class="user-comment">Проблема в том, что глупцы и фанатики слишком уверены в себе, а умные люди полны сомнений.</li>
-      </ol>
-      <form action="" method="post" class="comment-form">
-        <div class="comment-inner">
-          <label class="comment-label" for="comment-input">ваш комментарий</label>
-          <input type="text" class="comment-field" placeholder="Комментарий" required id="comment-input">
-        </div>
-        <button class="button" type="submit">Отправить</button>
-      </form>
-    </section>
-    <script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-23131825-1']);
-		_gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})(); </script>
+  </section>
 
-    <script type="text/javascript">new Image().src = "http://counter.yadro.ru/hit?r"+
-			escape(document.referrer)+((typeof(screen)=="undefined")?"":
-				";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-				screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+";"+Math.random();</script>
+  <section id="skills" class="container">
+    <h2 class="subheading">🛠 Навыки</h2>
+    <div class="skills-grid">
+      <div class="skill-item">Go <span class="level">продвинутый</span></div>
+      <div class="skill-item">Python <span class="level">средний</span></div>
+      <div class="skill-item">PostgreSQL <span class="level">уверенный</span></div>
+      <div class="skill-item">Docker / K8s <span class="level">базовый</span></div>
+      <div class="skill-item">Kafka <span class="level">знаком</span></div>
+      <div class="skill-item">Linux / Bash <span class="level">ежедневно</span></div>
+      <div class="skill-item">CI/CD (GitLab CI) <span class="level">настраивал</span></div>
+      <div class="skill-item">Grafana / Prometheus <span class="level">мониторинг</span></div>
+    </div>
+  </section>
 
-
-    <footer class="page-footer">
-      <div class="container">
-        <a class="footer-email" href="mailto:hovalyg_d@mail.ru">hovalyg_d@mail.ru</a>
-        <a class="footer-phone" href="tel:+79991792628">+7-(999)-179-26-28</a>
-
+  <section id="projects" class="container">
+    <h2 class="subheading">🚀 Проекты</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Core-сервис (Clyro)</h3>
+        <p>Архитектура с нуля, Clean Architecture, PostgreSQL, Redis, CI/CD, нагрузка 50k RPS</p>
+        <span class="stack">Go · PostgreSQL · Docker</span>
       </div>
-    </p>
-      </section>
-    </footer>
-  <script src="script.js"></script>
-  <script src="likes.js"></script>
-  <script src="comments.js"></script>
-  </body>
+      <div class="project-card">
+        <h3>WB Order Service</h3>
+        <p>Обработка заказов через Kafka, идемпотентность, Dead Letter Queue, graceful shutdown</p>
+        <span class="stack">Go · Kafka · PostgreSQL</span>
+      </div>
+      <div class="project-card">
+        <h3>To-Do с AI</h3>
+        <p>Интеграция с Ollama (LLM), конкурентность, clean-arch, REST API</p>
+        <span class="stack">Go · Ollama · pgx</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="comments" class="container comment-feed">
+    <h2 class="subheading">💬 Комментарии</h2>
+    <ol class="comment-list" id="commentList">
+      <li class="user-comment">Отличный подход, сразу видно системное мышление!</li>
+      <li class="user-comment">Надёжный коллега, быстро влился в команду.</li>
+    </ol>
+    <form class="comment-form" id="commentForm">
+      <input type="text" placeholder="Оставьте отзыв..." id="commentInput" required>
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+
+  <footer class="page-footer container">
+    <span>© 2026 Дажы Ховалыг</span>
+    <div>
+      <a href="mailto:hovalyg_d@mail.ru">📧 hovalyg_d@mail.ru</a>
+      <a href="tel:+79991792628" style="margin-left: 20px;">📞 +7 (999) 179-26-28</a>
+    </div>
+  </footer>
+
+  <script>
+    // ===== ТЕМА =====
+    const toggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        body.classList.add('light');
+        toggle.textContent = '☀️ Светлая';
+      } else {
+        body.classList.remove('light');
+        toggle.textContent = '🌙 Тёмная';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const saved = localStorage.getItem('theme');
+    if (saved) setTheme(saved);
+    else setTheme('dark');
+
+    toggle.addEventListener('click', () => {
+      const isLight = body.classList.contains('light');
+      setTheme(isLight ? 'dark' : 'light');
+    });
+
+    const likeBtn = document.getElementById('likeButton');
+    const likesSpan = document.getElementById('likesCount');
+    let likes = parseInt(localStorage.getItem('likes')) || 128;
+    likesSpan.textContent = likes;
+    let liked = false;
+
+    likeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (liked) return;
+      liked = true;
+      likes++;
+      likesSpan.textContent = likes;
+      localStorage.setItem('likes', likes);
+      this.classList.add('liked');
+      setTimeout(() => { liked = false; }, 1500);
+    });
+
+    // ===== КОММЕНТАРИИ =====
+    const form = document.getElementById('commentForm');
+    const input = document.getElementById('commentInput');
+    const list = document.getElementById('commentList');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.className = 'user-comment';
+      li.textContent = text;
+      list.appendChild(li);
+      input.value = '';
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      comments.push(text);
+      localStorage.setItem('comments', JSON.stringify(comments));
+    });
+
+    (function loadComments() {
+      const stored = localStorage.getItem('comments');
+      if (stored) {
+        const comments = JSON.parse(stored);
+        comments.forEach(text => {
+          const li = document.createElement('li');
+          li.className = 'user-comment';
+          li.textContent = text;
+          list.appendChild(li);
+        });
+      }
+    })();
+  </script>
+</body>
 </html>
