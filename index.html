@@ -102,11 +102,12 @@
       color: #c5cdd6;
       margin-bottom: 16px;
     }
-    .about-text .quote {
+    .about-text .hobby {
       font-style: italic;
       border-left: 3px solid #64b5f6;
       padding-left: 20px;
       color: #8a9aa8;
+      margin-top: 12px;
     }
     .user-image img {
       width: 100%;
@@ -144,9 +145,9 @@
     /* projects */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap: 24px;
-      margin-top: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 30px;
+      margin-top: 20px;
     }
     .project-card {
       background: rgba(255,255,255,0.03);
@@ -169,16 +170,21 @@
     }
 
     /* comments */
-    .comment-feed { background: rgba(255,255,255,0.02); border-radius: 20px; padding: 30px; }
+    .comment-feed {
+      background: rgba(255,255,255,0.02);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 40px;
+    }
     .comment-list { list-style: none; margin: 20px 0; }
     .user-comment {
       background: rgba(255,255,255,0.04);
       padding: 12px 18px;
       border-radius: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       border-left: 3px solid #64b5f6;
     }
-    .comment-form { display: flex; gap: 12px; flex-wrap: wrap; }
+    .comment-form { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
     .comment-form input {
       flex: 1;
       padding: 12px 18px;
@@ -209,6 +215,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
+      margin-top: 40px;
     }
     .page-footer a { color: #8a9aa8; }
     .page-footer a:hover { color: #fff; }
@@ -224,9 +231,13 @@
       font-size: 1rem;
       cursor: pointer;
       transition: 0.15s;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.04);
     }
-    .heart.liked { color: #ef5350; }
+    .heart.liked { color: #ef5350; background: rgba(239,83,80,0.1); }
     .heart .likes-number { font-weight: 600; }
+    .heart:hover { background: rgba(255,255,255,0.08); }
 
     /* responsive */
     @media (max-width: 700px) {
@@ -234,6 +245,7 @@
       .page-header { flex-direction: column; gap: 12px; }
       .hero h1 { font-size: 2.6rem; }
     }
+
     /* light theme overrides */
     body.light .page-header { border-bottom-color: #ddd; }
     body.light .hero .tagline { background: #fff; border-color: #ddd; color: #333; }
@@ -242,10 +254,11 @@
     body.light .comment-feed { background: #fff; }
     body.light .user-comment { background: #f0f2f5; border-left-color: #1e88e5; }
     body.light .comment-form input { background: #f0f2f5; border-color: #ccc; color: #111; }
-    body.light .heart { color: #111; }
+    body.light .heart { color: #111; background: #e8ecf0; }
+    body.light .heart.liked { background: rgba(239,83,80,0.15); }
     body.light .subheading { color: #111; }
     body.light .about-text p { color: #333; }
-    body.light .about-text .quote { color: #555; }
+    body.light .about-text .hobby { color: #555; }
     body.light .page-footer { border-top-color: #ddd; }
     body.light .page-footer a { color: #555; }
     body.light .page-footer a:hover { color: #000; }
@@ -257,7 +270,7 @@
       <a href="#about">Обо мне</a>
       <a href="#skills">Навыки</a>
       <a href="#projects">Проекты</a>
-      <a href="#comments">Отзывы</a>
+      <a href="#comments">Комментарии</a>
     </div>
     <button class="theme-toggle" id="themeToggle">🌙 Тёмная</button>
   </header>
@@ -269,13 +282,13 @@
   </section>
 
   <section id="about" class="container">
-    <h2 class="subheading">👋 Обо мне</h2>
+    <h2 class="subheading">Обо мне</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>Я — начинающий Go-разработчик с опытом коммерческой разработки в Авито и собственными pet-проектами. Умею проектировать микросервисы, работать с PostgreSQL, Kafka, Docker, Kubernetes.</p>
-        <p class="quote">«Люблю, когда система не падает, а код решает бизнес-задачи. Ищу место, где мои решения будут влиять на продукт.»</p>
-        <p>Сейчас активно развиваюсь в SRE и AI-агентах. Готов к стажировке или junior-позиции.</p>
-        <div style="margin-top: 20px;">
+        <p>Начинающий Go-разработчик с коммерческим опытом в Авито (работа с нагрузкой 1500 RPS, стабилизация тестовых окружений, CI/CD). Проектировал микросервисы, работал с PostgreSQL, Kafka, Docker, Kubernetes.</p>
+        <p>Постоянно прокачиваюсь в области highload, распределённых систем и инфраструктурных решений. Умею доводить задачи до продакшена и не боюсь сложных архитектурных вызовов.</p>
+        <div class="hobby">В свободное время играю в КС, осваиваю гитару и плаваю.</div>
+        <div style="margin-top: 24px;">
           <span class="heart" id="likeButton">❤️ <span class="likes-number" id="likesCount">128</span></span>
         </div>
       </div>
@@ -286,48 +299,85 @@
   </section>
 
   <section id="skills" class="container">
-    <h2 class="subheading">🛠 Навыки</h2>
+    <h2 class="subheading">Навыки</h2>
     <div class="skills-grid">
       <div class="skill-item">Go <span class="level">продвинутый</span></div>
       <div class="skill-item">Python <span class="level">средний</span></div>
       <div class="skill-item">PostgreSQL <span class="level">уверенный</span></div>
-      <div class="skill-item">Docker / K8s <span class="level">базовый</span></div>
-      <div class="skill-item">Kafka <span class="level">знаком</span></div>
-      <div class="skill-item">Linux / Bash <span class="level">ежедневно</span></div>
-      <div class="skill-item">CI/CD (GitLab CI) <span class="level">настраивал</span></div>
-      <div class="skill-item">Grafana / Prometheus <span class="level">мониторинг</span></div>
+      <div class="skill-item">Docker / K8s <span class="level">средний</span></div>
+      <div class="skill-item">Kafka <span class="level">уверенный</span></div>
+      <div class="skill-item">Linux / Bash <span class="level">средний</span></div>
+      <div class="skill-item">CI/CD <span class="level">средний</span></div>
+      <div class="skill-item">Grafana <span class="level">уверенный</span></div>
+      <div class="skill-item">TCP/IP <span class="level">уверенный</span></div>
+      <div class="skill-item">gRPC <span class="level">средний</span></div>
+      <div class="skill-item">Swagger <span class="level">базовый</span></div>
+      <div class="skill-item">AI Model API <span class="level">базовый</span></div>
+      <div class="skill-item">Обучаемость <span class="level">максимально</span></div>
+      <div class="skill-item">Адекватность <span class="level">максимально</span></div>
+      <div class="skill-item">Soft skills <span class="level">обалдеть</span></div>
     </div>
   </section>
 
   <section id="projects" class="container">
-    <h2 class="subheading">🚀 Проекты</h2>
+    <h2 class="subheading">Проекты</h2>
     <div class="projects-grid">
       <div class="project-card">
+        <h3>Авито (стажировка)</h3>
+        <p>Стабилизация тестовых окружений, снижение падений CI/CD на 73%, оптимизация пользовательского флоу.</p>
+        <span class="stack">Go · CI/CD · PostgreSQL</span>
+      </div>
+      <div class="project-card">
         <h3>Core-сервис (Clyro)</h3>
-        <p>Архитектура с нуля, Clean Architecture, PostgreSQL, Redis, CI/CD, нагрузка 50k RPS</p>
+        <p>Архитектура с нуля, Clean Architecture, PostgreSQL, Redis, CI/CD, нагрузка 50k RPS, zero‑downtime деплой.</p>
         <span class="stack">Go · PostgreSQL · Docker</span>
       </div>
       <div class="project-card">
-        <h3>WB Order Service</h3>
-        <p>Обработка заказов через Kafka, идемпотентность, Dead Letter Queue, graceful shutdown</p>
+        <h3>Order Service</h3>
+        <p>Обработка заказов через Kafka, идемпотентность, Dead Letter Queue, graceful shutdown.</p>
         <span class="stack">Go · Kafka · PostgreSQL</span>
       </div>
       <div class="project-card">
-        <h3>To-Do с AI</h3>
-        <p>Интеграция с Ollama (LLM), конкурентность, clean-arch, REST API</p>
+        <h3>Coin Service</h3>
+        <p>REST API для управления кошельками, транзакции, миграции, Docker.</p>
+        <span class="stack">Go · PostgreSQL · sqlc</span>
+      </div>
+      <div class="project-card">
+        <h3>ShortLinks Service</h3>
+        <p>Сервис сокращения ссылок с gRPC‑gateway, нагрузочное тестирование.</p>
+        <span class="stack">Go · gRPC · PostgreSQL</span>
+      </div>
+      <div class="project-card">
+        <h3>WorkerPool TUI</h3>
+        <p>Terminal UI для управления пулом воркеров, конкурентность.</p>
+        <span class="stack">Go · bubbletea</span>
+      </div>
+      <div class="project-card">
+        <h3>Telegram MusicBot</h3>
+        <p>Бот для поиска и воспроизведения музыки, gRPC, PostgreSQL.</p>
+        <span class="stack">Go · gRPC · PostgreSQL</span>
+      </div>
+      <div class="project-card">
+        <h3>Online Song Library</h3>
+        <p>REST API для онлайн-библиотеки песен.</p>
+        <span class="stack">Go · REST · PostgreSQL</span>
+      </div>
+      <div class="project-card">
+        <h3>To-Do с AI (Ollama)</h3>
+        <p>Интеграция с локальной LLM, конкурентность, clean‑arch, REST API.</p>
         <span class="stack">Go · Ollama · pgx</span>
       </div>
     </div>
   </section>
 
   <section id="comments" class="container comment-feed">
-    <h2 class="subheading">💬 Комментарии</h2>
+    <h2 class="subheading">Комментарии</h2>
     <ol class="comment-list" id="commentList">
       <li class="user-comment">Отличный подход, сразу видно системное мышление!</li>
       <li class="user-comment">Надёжный коллега, быстро влился в команду.</li>
     </ol>
     <form class="comment-form" id="commentForm">
-      <input type="text" placeholder="Оставьте отзыв..." id="commentInput" required>
+      <input type="text" placeholder="Оставьте комментарий..." id="commentInput" required>
       <button type="submit">Отправить</button>
     </form>
   </section>
@@ -336,12 +386,11 @@
     <span>© 2026 Дажы Ховалыг</span>
     <div>
       <a href="mailto:hovalyg_d@mail.ru">📧 hovalyg_d@mail.ru</a>
-      <a href="tel:+79991792628" style="margin-left: 20px;">📞 +7 (999) 179-26-28</a>
+      <a href="tel:+79966099350" style="margin-left: 20px;">📞 +7 (996) 609-93-50</a>
     </div>
   </footer>
 
   <script>
-    // ===== ТЕМА =====
     const toggle = document.getElementById('themeToggle');
     const body = document.body;
 
@@ -382,7 +431,6 @@
       setTimeout(() => { liked = false; }, 1500);
     });
 
-    // ===== КОММЕНТАРИИ =====
     const form = document.getElementById('commentForm');
     const input = document.getElementById('commentInput');
     const list = document.getElementById('commentList');
