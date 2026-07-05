@@ -63,7 +63,17 @@
       background: linear-gradient(135deg, #64b5f6, #42a5f5, #1e88e5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      display: inline-block;
     }
+    .telegram-link {
+      font-size: 1.8rem;
+      margin-left: 12px;
+      color: #64b5f6;
+      transition: 0.2s;
+      -webkit-text-fill-color: #64b5f6; /* чтобы не перекрывался градиентом */
+      background: none;
+    }
+    .telegram-link:hover { color: #90caf9; }
     .hero .subhead {
       font-size: 1.2rem;
       color: #aaa;
@@ -263,6 +273,7 @@
     body.light .page-footer { border-top-color: #ddd; }
     body.light .page-footer a { color: #555; }
     body.light .page-footer a:hover { color: #000; }
+    body.light .telegram-link { -webkit-text-fill-color: #1e88e5; color: #1e88e5; }
   </style>
 </head>
 <body>
@@ -277,7 +288,7 @@
   </header>
 
   <section class="hero container">
-    <h1>Дажы Ховалыг</h1>
+    <h1>Дажы Ховалыг <a href="https://t.me/gremislaw" target="_blank" class="telegram-link" title="Telegram">✈️</a></h1>
     <div class="subhead">Golang · Backend · Инфраструктура</div>
     <div class="tagline">Студент МИСИС • Школа 21 • Авито • ищу вызовы</div>
   </section>
@@ -325,8 +336,7 @@
     <div class="projects-grid">
       <div class="project-card">
         <h3>Авито</h3>
-        <p>Разработал консьюмеры и продьюсеры Kafka, при выкатке в прод следил за дашбордами, реализовал модуль Clickhouse, Выполнил годовой приоритет СТО: стабилизировал тестовое окружение в 3 сервисах через
-анализ ELK и декомпозицию.</p>
+        <p>Разработал консьюмеры и продьюсеры Kafka, при выкатке в прод следил за дашбордами, реализовал модуль Clickhouse, Выполнил годовой приоритет СТО: стабилизировал тестовое окружение в 3 сервисах через анализ ELK и декомпозицию.</p>
         <span class="stack">Go · CI/CD · PostgreSQL</span>
       </div>
       <div class="project-card">
@@ -394,6 +404,7 @@
     <div>
       <a href="mailto:hovalyg_d@mail.ru">📧 hovalyg_d@mail.ru</a>
       <a href="tel:+79966099350" style="margin-left: 20px;">📞 +7 (996) 609-93-50</a>
+      <a href="https://t.me/gremislaw" target="_blank" style="margin-left: 20px;">✈️ Telegram</a>
     </div>
   </footer>
 
