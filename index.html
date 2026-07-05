@@ -70,7 +70,7 @@
       margin-left: 12px;
       color: #64b5f6;
       transition: 0.2s;
-      -webkit-text-fill-color: #64b5f6; /* чтобы не перекрывался градиентом */
+      -webkit-text-fill-color: #64b5f6;
       background: none;
     }
     .telegram-link:hover { color: #90caf9; }
@@ -180,6 +180,59 @@
       margin-top: 10px;
     }
 
+    /* RPS viz */
+    .rps-controls {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    .rps-controls label {
+      font-weight: 500;
+      color: #aaa;
+    }
+    .rps-controls input[type="number"] {
+      width: 80px;
+      padding: 8px 12px;
+      border-radius: 30px;
+      border: 1px solid #2a2f35;
+      background: #161a1f;
+      color: #e8edf2;
+      font-size: 1rem;
+    }
+    .rps-controls button {
+      background: #64b5f6;
+      border: none;
+      padding: 8px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #0b0d10;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .rps-controls button:hover { background: #42a5f5; }
+    .rps-controls button:disabled { opacity: 0.5; pointer-events: none; }
+    canvas#rpsCanvas {
+      width: 100%;
+      height: 200px;
+      background: #161a1f;
+      border-radius: 16px;
+      display: block;
+      margin-top: 12px;
+      border: 1px solid #2a2f35;
+    }
+    body.light canvas#rpsCanvas {
+      background: #f0f2f5;
+      border-color: #ccc;
+    }
+    body.light .rps-controls label { color: #333; }
+    body.light .rps-controls input[type="number"] {
+      background: #f0f2f5;
+      border-color: #ccc;
+      color: #111;
+    }
+
     /* comments */
     .comment-feed {
       background: rgba(255,255,255,0.02);
@@ -282,13 +335,14 @@
       <a href="#about">Обо мне</a>
       <a href="#skills">Навыки</a>
       <a href="#projects">Проекты</a>
+      <a href="#rps">RPS</a>
       <a href="#comments">Комментарии</a>
     </div>
     <button class="theme-toggle" id="themeToggle">🌙 Тёмная</button>
   </header>
 
   <section class="hero container">
-    <h1>Дажы Ховалыг <a href="https://t.me/gremislaw" target="_blank" class="telegram-link" title="Telegram">✈️</a></h1>
+    <h1>Дажы Ховалыг <a href="https://t.me/dazhy" target="_blank" class="telegram-link" title="Telegram">✈️</a></h1>
     <div class="subhead">Golang · Backend · Инфраструктура</div>
     <div class="tagline">Студент МИСИС • Школа 21 • Авито • ищу вызовы</div>
   </section>
@@ -387,6 +441,20 @@
     </div>
   </section>
 
+  <!-- ====== RPS ВИЗУАЛИЗАЦИЯ ====== -->
+  <section id="rps" class="container">
+    <h2 class="subheading">RPS-визуализация</h2>
+    <p style="color: #9aa9b8; margin-bottom: 16px;">Симуляция обработки запросов: точки проходят этапы «Получен» → «Обработка» → «Ответ».</p>
+    <div class="rps-controls">
+      <label for="rpsInput">RPS:</label>
+      <input type="number" id="rpsInput" value="10" min="1" max="100">
+      <button id="rpsStartBtn">▶ Старт</button>
+      <button id="rpsStopBtn" disabled>⏹ Стоп</button>
+      <span id="rpsStats" style="margin-left: auto; color: #aaa;">Запросов: 0 | Успешно: 0</span>
+    </div>
+    <canvas id="rpsCanvas" width="800" height="200"></canvas>
+  </section>
+
   <section id="comments" class="container comment-feed">
     <h2 class="subheading">Комментарии</h2>
     <ol class="comment-list" id="commentList">
@@ -404,14 +472,14 @@
     <div>
       <a href="mailto:hovalyg_d@mail.ru">📧 hovalyg_d@mail.ru</a>
       <a href="tel:+79966099350" style="margin-left: 20px;">📞 +7 (996) 609-93-50</a>
-      <a href="https://t.me/gremislaw" target="_blank" style="margin-left: 20px;">✈️ Telegram</a>
+      <a href="https://t.me/dazhy" target="_blank" style="margin-left: 20px;">✈️ Telegram</a>
     </div>
   </footer>
 
   <script>
+    // --- Тема ---
     const toggle = document.getElementById('themeToggle');
     const body = document.body;
-
     function setTheme(theme) {
       if (theme === 'light') {
         body.classList.add('light');
@@ -422,22 +490,20 @@
       }
       localStorage.setItem('theme', theme);
     }
-
     const saved = localStorage.getItem('theme');
     if (saved) setTheme(saved);
     else setTheme('dark');
-
     toggle.addEventListener('click', () => {
       const isLight = body.classList.contains('light');
       setTheme(isLight ? 'dark' : 'light');
     });
 
+    // --- Лайки ---
     const likeBtn = document.getElementById('likeButton');
     const likesSpan = document.getElementById('likesCount');
     let likes = parseInt(localStorage.getItem('likes')) || 128;
     likesSpan.textContent = likes;
     let liked = false;
-
     likeBtn.addEventListener('click', function(e) {
       e.preventDefault();
       if (liked) return;
@@ -449,10 +515,10 @@
       setTimeout(() => { liked = false; }, 1500);
     });
 
+    // --- Комментарии ---
     const form = document.getElementById('commentForm');
     const input = document.getElementById('commentInput');
     const list = document.getElementById('commentList');
-
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const text = input.value.trim();
@@ -466,7 +532,6 @@
       comments.push(text);
       localStorage.setItem('comments', JSON.stringify(comments));
     });
-
     (function loadComments() {
       const stored = localStorage.getItem('comments');
       if (stored) {
@@ -478,6 +543,171 @@
           list.appendChild(li);
         });
       }
+    })();
+
+    // --- RPS Визуализация ---
+    (function() {
+      const canvas = document.getElementById('rpsCanvas');
+      const ctx = canvas.getContext('2d');
+      const rpsInput = document.getElementById('rpsInput');
+      const startBtn = document.getElementById('rpsStartBtn');
+      const stopBtn = document.getElementById('rpsStopBtn');
+      const statsSpan = document.getElementById('rpsStats');
+
+      let width = canvas.width;
+      let height = canvas.height;
+      let animId = null;
+      let running = false;
+      let points = [];
+      let totalRequests = 0;
+      let successfulRequests = 0;
+      let spawnCounter = 0;
+      const STAGES = ['received', 'processing', 'responded'];
+      const STAGE_COLORS = ['#4fc3f7', '#ffb74d', '#81c784'];
+
+      // Размеры
+      const LANE_HEIGHT = height;
+      const POINT_RADIUS = 6;
+      const SPEED = 1.2; // пикселей за кадр
+      const STAGE_WIDTH = width / 3; // три этапа по трети ширины
+
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        width = canvas.width;
+        height = canvas.height;
+        ctx.scale(1, 1); // масштабирование не требуется, т.к. координаты в пикселях canvas
+        // Корректируем STAGE_WIDTH под новый размер
+        // Но проще пересчитывать при отрисовке
+      }
+      // Инициализация размеров
+      resizeCanvas();
+
+      function spawnPoint() {
+        const y = Math.random() * height;
+        points.push({
+          x: 0,
+          y: y,
+          stage: 0, // 0 - received, 1 - processing, 2 - responded
+          alive: true,
+          speed: SPEED * (0.8 + Math.random() * 0.4)
+        });
+        totalRequests++;
+        statsSpan.textContent = `Запросов: ${totalRequests} | Успешно: ${successfulRequests}`;
+      }
+
+      function updatePoints() {
+        const toRemove = [];
+        for (let i = 0; i < points.length; i++) {
+          const p = points[i];
+          p.x += p.speed;
+          // Определяем этап по положению x
+          const stageIndex = Math.min(2, Math.floor(p.x / (width / 3)));
+          p.stage = stageIndex;
+          // Если точка ушла за правый край – считаем успешно завершённой
+          if (p.x > width) {
+            if (p.alive) {
+              successfulRequests++;
+              p.alive = false;
+              statsSpan.textContent = `Запросов: ${totalRequests} | Успешно: ${successfulRequests}`;
+            }
+            toRemove.push(i);
+          }
+        }
+        // Удаляем мёртвые точки
+        for (let i = toRemove.length - 1; i >= 0; i--) {
+          points.splice(toRemove[i], 1);
+        }
+      }
+
+      function drawPoints() {
+        ctx.clearRect(0, 0, width, height);
+        // Рисуем разделители этапов
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+        ctx.lineWidth = 1;
+        for (let i = 1; i < 3; i++) {
+          const x = i * width / 3;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
+        // Подписи этапов (светлая тема корректируется)
+        ctx.fillStyle = '#8a9aa8';
+        ctx.font = '12px Inter';
+        ctx.textAlign = 'center';
+        ctx.fillText('Получен', width/6, 20);
+        ctx.fillText('Обработка', width/2, 20);
+        ctx.fillText('Ответ', 5*width/6, 20);
+
+        for (const p of points) {
+          const color = STAGE_COLORS[p.stage];
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, POINT_RADIUS, 0, 2 * Math.PI);
+          ctx.fillStyle = color;
+          ctx.fill();
+          // небольшой свечение
+          ctx.shadowColor = color;
+          ctx.shadowBlur = 8;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+
+      function loop() {
+        if (!running) return;
+        const rps = parseInt(rpsInput.value) || 10;
+        // Частота спавна: за секунду должно появиться rps точек.
+        // При 60 FPS: спавним каждые (60 / rps) кадров.
+        const spawnInterval = Math.max(1, Math.floor(60 / rps));
+        spawnCounter++;
+        if (spawnCounter >= spawnInterval) {
+          spawnCounter = 0;
+          spawnPoint();
+        }
+        updatePoints();
+        drawPoints();
+        animId = requestAnimationFrame(loop);
+      }
+
+      function startSimulation() {
+        if (running) return;
+        running = true;
+        totalRequests = 0;
+        successfulRequests = 0;
+        points = [];
+        statsSpan.textContent = `Запросов: 0 | Успешно: 0`;
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+        loop();
+      }
+
+      function stopSimulation() {
+        running = false;
+        if (animId) {
+          cancelAnimationFrame(animId);
+          animId = null;
+        }
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        // Очистить канвас
+        ctx.clearRect(0, 0, width, height);
+        points = [];
+        statsSpan.textContent = `Запросов: ${totalRequests} | Успешно: ${successfulRequests}`;
+      }
+
+      startBtn.addEventListener('click', startSimulation);
+      stopBtn.addEventListener('click', stopSimulation);
+
+      // Перерисовка при изменении размера окна
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        if (!running) drawPoints();
+      });
+
+      // Инициализация: рисуем пустой канвас
+      drawPoints();
     })();
   </script>
 </body>
